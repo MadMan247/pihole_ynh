@@ -96,10 +96,10 @@ ynh_system_user_create --username=$app --home_dir="$final_path"
 if [ "$upgrade_type" == "UPGRADE_APP" ]
 then
 	ynh_script_progression --message="Upgrading source files..." --weight=4
-	ynh_setup_source --dest_dir="$PI_HOLE_LOCAL_REPO" --source_id="pi-hole_Core"
-	ynh_setup_source --dest_dir="$final_path" --source_id=pi-hole_AdminLTE
+	ynh_setup_source --dest_dir="$PI_HOLE_LOCAL_REPO" --source_id="pi-hole_Core" --full_replace=1
+	ynh_setup_source --dest_dir="$final_path" --source_id=pi-hole_AdminLTE --full_replace=1
 	FTL_temp_path=$(mktemp -d)
-	ynh_setup_source --dest_dir="$FTL_temp_path" --source_id="pi-hole_FTL"
+	ynh_setup_source --dest_dir="$FTL_temp_path" --source_id="pi-hole_FTL" --full_replace=1
 fi
 
 chmod 750 "$final_path"
